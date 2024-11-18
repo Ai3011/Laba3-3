@@ -21,7 +21,7 @@ int main() {
     Queue queue;
     AVLTree* avl = new AVLTree();  // Указатель на объект дерева
     HashTable ht;
-    initHashTable(ht); // Инициализация хэш-таблицы
+    // Инициализация хэш-таблицы
 
     string command;
     while (true) {
@@ -402,8 +402,8 @@ int main() {
                 }
             }
         }else if (command == "avl") {
-    string avlCommand;
-    while (true) {
+        string avlCommand;
+        while (true) {
         cout << "Команды для AVL-дерева (TINSERT, TDEL, PRINT, SAVE, LOAD, TFIND, EXIT): ";
         getline(cin, avlCommand);
 
@@ -507,83 +507,78 @@ int main() {
         else if (command == "hashtable") {
         string hashTableCommand;
         while (true) {
-            cout << "Команды для хэш-таблицы (HSET, HGET, HREMOVE, HCLEAR, PRINT, LOAD, SAVE, EXIT): ";
-            getline(cin, hashTableCommand);
+                cout << "Команды для хэш-таблицы (HSET, HGET, HREMOVE, PRINT, LOAD, SAVE, EXIT): ";
+                getline(cin, hashTableCommand);
 
-            if (hashTableCommand == "HSET") {
-                string key, value;
-                cout << "Введите ключ: ";
-                getline(cin, key);
-                cout << "Введите значение: ";
-                getline(cin, value);
-                insert(ht, key, value);
-            }
-            else if (hashTableCommand == "HGET") {
-                string key;
-                cout << "Введите ключ: ";
-                getline(cin, key);
+                if (hashTableCommand == "HSET") {
+                    string key, value;
+                    cout << "Введите ключ: ";
+                    getline(cin, key);
+                    cout << "Введите значение: ";
+                    getline(cin, value);
+                    ht.insert(key, value);
+                    cout << "Элемент добавлен." << endl;
+                }
+                else if (hashTableCommand == "HGET") {
+                    string key;
+                    cout << "Введите ключ: ";
+                    getline(cin, key);
 
-                string value = get(ht, key);
-                if (value != "") {
-                    cout << "Значение: " << value << endl;
+                    string value = ht.get(key);
+                    if (value != "") {
+                        cout << "Значение: " << value << endl;
+                    } else {
+                        cout << "Элемент не найден." << endl;
+                    }
+                }
+                else if (hashTableCommand == "HREMOVE") {
+                    string key;
+                    cout << "Введите ключ для удаления: ";
+                    getline(cin, key);
+                    ht.remove(key);
+                    cout << "Элемент удалён." << endl;
+                }
+                else if (hashTableCommand == "PRINT") {
+                    cout << "Содержимое хэш-таблицы:" << endl;
+                    ht.print();
+                }
+                else if (hashTableCommand == "LOAD") {
+                    string filename;
+                    cout << "Введите имя файла для загрузки: ";
+                    getline(cin, filename);
+                    try {
+                        ht.loadFromFile(filename);
+                        cout << "Хэш-таблица успешно загружена из файла " << filename << endl;
+                    } catch (const runtime_error& e) {
+                        cerr << "Ошибка: " << e.what() << endl;
+                    }
+                }
+                else if (hashTableCommand == "SAVE") {
+                    string filename;
+                    cout << "Введите имя файла для сохранения: ";
+                    getline(cin, filename);
+                    try {
+                        ht.saveToFileAndClear(filename);
+                        cout << "Хэш-таблица успешно сохранена в файл " << filename << endl;
+                    } catch (const runtime_error& e) {
+                        cerr << "Ошибка: " << e.what() << endl;
+                    }
+                }
+                else if (hashTableCommand == "EXIT") {
+                    cout << "Выход из хэш-таблицы." << endl;
+                    break;
                 }
                 else {
-                    cout << "Элемент не найден." << endl;
+                    cout << "Неизвестная команда." << endl;
                 }
-            }
-            else if (hashTableCommand == "HREMOVE") {
-                string key;
-                cout << "Введите ключ для удаления: ";
-                getline(cin, key);
-                remove(ht, key);
-                cout << "Элемент удалён." << endl;
-            }
-            else if (hashTableCommand == "PRINT") {
-                cout << "Содержимое хэш-таблицы:" << endl;
-                printHashTable(ht);
-            }
-            else if (hashTableCommand == "LOAD") {
-                string filename;
-                cout << "Введите имя файла для загрузки: ";
-                getline(cin, filename);
-                try {
-                    loadFromFile(ht, filename);
-                    cout << "Хэш-таблица успешно загружена из файла " << filename << endl;
-                }
-                catch (const runtime_error& e) {
-                    cerr << "Ошибка: " << e.what() << endl;
-                }
-            }
-            else if (hashTableCommand == "SAVE") {
-                string filename;
-                cout << "Введите имя файла для сохранения: ";
-                getline(cin, filename);
-                try {
-                    saveToFileAndClear(ht, filename);
-                    cout << "Хэш-таблица успешно сохранена в файл " << filename << endl;
-                }
-                catch (const runtime_error& e) {
-                    cerr << "Ошибка: " << e.what() << endl;
-                }
-            }
-            else if (hashTableCommand == "EXIT") {
-                clearHashTable(ht);
-                break;
-            }
-            else {
-                cout << "Неизвестная команда." << endl;
             }
         }
-}
-
         // Завершение программы
         else if (command == "exit") {
-        break;
+            break;
         }
         else {
-        cout << "Неизвестная команда." << endl;
+            cout << "Неизвестная команда." << endl;
         }
     }
-
-    return 0;
-}
+} 
