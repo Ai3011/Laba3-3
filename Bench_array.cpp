@@ -5,8 +5,8 @@
 static void BM_AddElement(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
     }
@@ -17,13 +17,13 @@ BENCHMARK(BM_AddElement);
 static void BM_InsertElement(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
 
         // Вставка элемента в середину массива
-        arr.insert(500, "Inserted Element");
+        arr.insert(5000, "Inserted Element");
     }
 }
 BENCHMARK(BM_InsertElement);
@@ -32,13 +32,13 @@ BENCHMARK(BM_InsertElement);
 static void BM_RemoveElement(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
 
         // Удаление всех элементов
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             arr.remove(0);
         }
     }
@@ -49,13 +49,13 @@ BENCHMARK(BM_RemoveElement);
 static void BM_ReplaceElement(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
 
         // Замена элемента
-        arr.replace(500, "Replaced Element");
+        arr.replace(5000, "Replaced Element");
     }
 }
 BENCHMARK(BM_ReplaceElement);
@@ -64,13 +64,13 @@ BENCHMARK(BM_ReplaceElement);
 static void BM_GetElement(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
 
         // Получение элемента
-        benchmark::DoNotOptimize(arr.get(500));
+        benchmark::DoNotOptimize(arr.get(5000));
     }
 }
 BENCHMARK(BM_GetElement);
@@ -79,8 +79,8 @@ BENCHMARK(BM_GetElement);
 static void BM_ClearArray(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
 
@@ -94,8 +94,8 @@ BENCHMARK(BM_ClearArray);
 static void BM_LoadFromFile(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
 
@@ -113,8 +113,8 @@ BENCHMARK(BM_LoadFromFile);
 static void BM_SaveToFile(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
 
@@ -128,8 +128,8 @@ BENCHMARK(BM_SaveToFile);
 static void BM_SerializeBinary(benchmark::State& state) {
     for (auto _ : state) {
         StringArray arr;
-        // Добавление 1000 элементов
-        for (int i = 0; i < 1000; ++i) {
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             arr.add("Element " + std::to_string(i));
         }
 
