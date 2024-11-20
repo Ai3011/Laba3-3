@@ -5,7 +5,10 @@
 static void BM_AddHead(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addHead("Element");
+        // Добавление 10 000 элементов в начало
+        for (int i = 0; i < 10000; ++i) {
+            list.addHead("Element" + std::to_string(i));
+        }
     }
 }
 BENCHMARK(BM_AddHead);
@@ -14,7 +17,10 @@ BENCHMARK(BM_AddHead);
 static void BM_AddTail(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addTail("Element");
+        // Добавление 10 000 элементов в конец
+        for (int i = 0; i < 10000; ++i) {
+            list.addTail("Element" + std::to_string(i));
+        }
     }
 }
 BENCHMARK(BM_AddTail);
@@ -23,9 +29,14 @@ BENCHMARK(BM_AddTail);
 static void BM_RemoveHead(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addHead("Element1");
-        list.addHead("Element2");
-        list.removeHead();
+        // Добавление 10 000 элементов в начало
+        for (int i = 0; i < 10000; ++i) {
+            list.addHead("Element" + std::to_string(i));
+        }
+        // Удаление головы 10 000 раз
+        for (int i = 0; i < 10000; ++i) {
+            list.removeHead();
+        }
     }
 }
 BENCHMARK(BM_RemoveHead);
@@ -34,9 +45,14 @@ BENCHMARK(BM_RemoveHead);
 static void BM_RemoveTail(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addTail("Element1");
-        list.addTail("Element2");
-        list.removeTail();
+        // Добавление 10 000 элементов в конец
+        for (int i = 0; i < 10000; ++i) {
+            list.addTail("Element" + std::to_string(i));
+        }
+        // Удаление хвоста 10 000 раз
+        for (int i = 0; i < 10000; ++i) {
+            list.removeTail();
+        }
     }
 }
 BENCHMARK(BM_RemoveTail);
@@ -45,9 +61,14 @@ BENCHMARK(BM_RemoveTail);
 static void BM_RemoveByValue(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addHead("Element1");
-        list.addTail("Element2");
-        list.removeByValue("Element1");
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
+            list.addTail("Element" + std::to_string(i));
+        }
+        // Удаление 10 000 элементов по значению
+        for (int i = 0; i < 10000; ++i) {
+            list.removeByValue("Element" + std::to_string(i));
+        }
     }
 }
 BENCHMARK(BM_RemoveByValue);
@@ -56,9 +77,12 @@ BENCHMARK(BM_RemoveByValue);
 static void BM_Find(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addHead("Element1");
-        list.addTail("Element2");
-        list.find("Element1");
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
+            list.addTail("Element" + std::to_string(i));
+        }
+        // Поиск элемента
+        list.find("Element5000");
     }
 }
 BENCHMARK(BM_Find);
@@ -67,8 +91,11 @@ BENCHMARK(BM_Find);
 static void BM_SaveToFile(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addHead("Element1");
-        list.addTail("Element2");
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
+            list.addTail("Element" + std::to_string(i));
+        }
+        // Сохранение в файл
         list.saveToFile("test.txt");
     }
 }
@@ -78,6 +105,7 @@ BENCHMARK(BM_SaveToFile);
 static void BM_LoadFromFile(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
+        // Загрузка из файла
         list.loadFromFile("test.txt");
     }
 }
@@ -87,8 +115,11 @@ BENCHMARK(BM_LoadFromFile);
 static void BM_SerializeBinary(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addHead("Element1");
-        list.addTail("Element2");
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
+            list.addTail("Element" + std::to_string(i));
+        }
+        // Сериализация в бинарный файл
         list.serializeBinary("test.bin");
     }
 }
@@ -98,6 +129,7 @@ BENCHMARK(BM_SerializeBinary);
 static void BM_DeserializeBinary(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
+        // Десериализация из бинарного файла
         list.deserializeBinary("test.bin");
     }
 }
@@ -107,8 +139,11 @@ BENCHMARK(BM_DeserializeBinary);
 static void BM_Clear(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
-        list.addHead("Element1");
-        list.addTail("Element2");
+        // Добавление 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
+            list.addTail("Element" + std::to_string(i));
+        }
+        // Очистка списка
         list.clear();
     }
 }
@@ -119,6 +154,7 @@ static void BM_IsEmpty(benchmark::State& state) {
     for (auto _ : state) {
         LinkedList list;
         list.isEmpty();
+        // Добавление элемента
         list.addHead("Element1");
         list.isEmpty();
     }
