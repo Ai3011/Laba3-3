@@ -5,8 +5,10 @@
 static void BM_AddHead(benchmark::State& state) {
     for (auto _ : state) {
         DoublyLinkedList list;
-        // Добавление элемента в начало списка
-        list.addHead("Element");
+        // Добавление 10 000 элементов в начало списка
+        for (int i = 0; i < 10000; ++i) {
+            list.addHead("Element " + std::to_string(i));
+        }
     }
 }
 BENCHMARK(BM_AddHead);
@@ -15,8 +17,10 @@ BENCHMARK(BM_AddHead);
 static void BM_AddTail(benchmark::State& state) {
     for (auto _ : state) {
         DoublyLinkedList list;
-        // Добавление элемента в конец списка
-        list.addTail("Element");
+        // Добавление 10 000 элементов в конец списка
+        for (int i = 0; i < 10000; ++i) {
+            list.addTail("Element " + std::to_string(i));
+        }
     }
 }
 BENCHMARK(BM_AddTail);
@@ -25,8 +29,8 @@ BENCHMARK(BM_AddTail);
 static void BM_RemoveHead(benchmark::State& state) {
     for (auto _ : state) {
         DoublyLinkedList list;
-        // Заполнение списка 100 элементов
-        for (int i = 0; i < 100; ++i) {
+        // Заполнение списка 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             list.addTail("Element " + std::to_string(i));
         }
         // Удаление всех элементов с головы списка
@@ -41,8 +45,8 @@ BENCHMARK(BM_RemoveHead);
 static void BM_RemoveTail(benchmark::State& state) {
     for (auto _ : state) {
         DoublyLinkedList list;
-        // Заполнение списка 100 элементов
-        for (int i = 0; i < 100; ++i) {
+        // Заполнение списка 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             list.addTail("Element " + std::to_string(i));
         }
         // Удаление всех элементов с хвоста списка
@@ -57,12 +61,12 @@ BENCHMARK(BM_RemoveTail);
 static void BM_Find(benchmark::State& state) {
     for (auto _ : state) {
         DoublyLinkedList list;
-        // Заполнение списка 100 элементов
-        for (int i = 0; i < 100; ++i) {
+        // Заполнение списка 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             list.addTail("Element " + std::to_string(i));
         }
         // Поиск элемента в списке
-        list.find("Element 50");
+        list.find("Element 5000");
     }
 }
 BENCHMARK(BM_Find);
@@ -71,12 +75,12 @@ BENCHMARK(BM_Find);
 static void BM_RemoveValue(benchmark::State& state) {
     for (auto _ : state) {
         DoublyLinkedList list;
-        // Заполнение списка 100 элементов
-        for (int i = 0; i < 100; ++i) {
+        // Заполнение списка 10 000 элементов
+        for (int i = 0; i < 10000; ++i) {
             list.addTail("Element " + std::to_string(i));
         }
         // Удаление элемента по значению
-        list.removeValue("Element 50");
+        list.removeValue("Element 5000");
     }
 }
 BENCHMARK(BM_RemoveValue);
