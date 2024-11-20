@@ -5,7 +5,7 @@
 // Генерация случайных чисел для вставки в дерево
 void generateRandomNumbers(int* arr, int size) {
     for (int i = 0; i < size; ++i) {
-        arr[i] = rand() % 10000;  // Случайное число от 0 до 9999
+        arr[i] = rand() % 100000;  // Случайное число от 0 до 9999
     }
 }
 
@@ -15,11 +15,11 @@ void generateRandomNumbers(int* arr, int size) {
 static void BM_Insert(benchmark::State& state) {
     for (auto _ : state) {
         AVLTree tree;
-        int arr[1000];
-        generateRandomNumbers(arr, 1000);
+        int arr[10000];
+        generateRandomNumbers(arr, 10000);
         
         // Вставляем элементы в дерево
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             tree.root = tree.insert(tree.root, arr[i]);
         }
         
@@ -31,17 +31,17 @@ BENCHMARK(BM_Insert);
 static void BM_Find(benchmark::State& state) {
     for (auto _ : state) {
         AVLTree tree;
-        int arr[1000];
-        generateRandomNumbers(arr, 1000);
+        int arr[10000];
+        generateRandomNumbers(arr, 10000);
         
         // Вставляем элементы в дерево
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             tree.root = tree.insert(tree.root, arr[i]);
         }
 
         
 
-        tree.find(tree.root, arr[500]);  // Поиск элемента с ключом из середины
+        tree.find(tree.root, arr[5000]);  // Поиск элемента с ключом из середины
     }
 }
 BENCHMARK(BM_Find);
@@ -50,11 +50,11 @@ BENCHMARK(BM_Find);
 static void BM_Remove(benchmark::State& state) {
     for (auto _ : state) {
         AVLTree tree;
-        int arr[1000];
-        generateRandomNumbers(arr, 1000);
+        int arr[10000];
+        generateRandomNumbers(arr, 10000);
         
         // Вставляем элементы в дерево
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             tree.root = tree.insert(tree.root, arr[i]);
         }
 
@@ -69,11 +69,11 @@ BENCHMARK(BM_Remove);
 static void BM_FindMin(benchmark::State& state) {
     for (auto _ : state) {
         AVLTree tree;
-        int arr[1000];
-        generateRandomNumbers(arr, 1000);
+        int arr[10000];
+        generateRandomNumbers(arr, 10000);
         
         // Вставляем элементы в дерево
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             tree.root = tree.insert(tree.root, arr[i]);
         }
 
@@ -86,11 +86,11 @@ BENCHMARK(BM_FindMin);
 static void BM_RemoveMin(benchmark::State& state) {
     for (auto _ : state) {
         AVLTree tree;
-        int arr[1000];
-        generateRandomNumbers(arr, 1000);
+        int arr[10000];
+        generateRandomNumbers(arr, 10000);
         
         // Вставляем элементы в дерево
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 10000; ++i) {
             tree.root = tree.insert(tree.root, arr[i]);
         }
 
